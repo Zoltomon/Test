@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Test4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TestEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Orders" EntityType="Test4Model.Orders" />
+    <EntitySet Name="PersonalData" EntityType="Test4Model.PersonalData" />
+    <EntitySet Name="Products" EntityType="Test4Model.Products" />
+    <EntitySet Name="Roles" EntityType="Test4Model.Roles" />
+    <EntitySet Name="Statuses" EntityType="Test4Model.Statuses" />
+    <EntitySet Name="sysdiagrams" EntityType="Test4Model.sysdiagrams" />
+    <EntitySet Name="Users" EntityType="Test4Model.Users" />
+    <AssociationSet Name="FK_Orders_PersonalData" Association="Test4Model.FK_Orders_PersonalData">
+      <End Role="PersonalData" EntitySet="PersonalData" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Products" Association="Test4Model.FK_Orders_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Statuses" Association="Test4Model.FK_Orders_Statuses">
+      <End Role="Statuses" EntitySet="Statuses" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonalData_Users" Association="Test4Model.FK_PersonalData_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PersonalData" EntitySet="PersonalData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="Test4Model.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Statuses" Association="Test4Model.FK_Users_Statuses">
+      <End Role="Statuses" EntitySet="Statuses" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="PersonalDataId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="StatusId" Type="Int32" />
+    <NavigationProperty Name="PersonalData" Relationship="Test4Model.FK_Orders_PersonalData" FromRole="Orders" ToRole="PersonalData" />
+    <NavigationProperty Name="Products" Relationship="Test4Model.FK_Orders_Products" FromRole="Orders" ToRole="Products" />
+    <NavigationProperty Name="Statuses" Relationship="Test4Model.FK_Orders_Statuses" FromRole="Orders" ToRole="Statuses" />
+  </EntityType>
+  <EntityType Name="PersonalData">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Patronomic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="Orders" Relationship="Test4Model.FK_Orders_PersonalData" FromRole="PersonalData" ToRole="Orders" />
+    <NavigationProperty Name="Users" Relationship="Test4Model.FK_PersonalData_Users" FromRole="PersonalData" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameProduct" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Orders" Relationship="Test4Model.FK_Orders_Products" FromRole="Products" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Users" Relationship="Test4Model.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Statuses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Orders" Relationship="Test4Model.FK_Orders_Statuses" FromRole="Statuses" ToRole="Orders" />
+    <NavigationProperty Name="Users" Relationship="Test4Model.FK_Users_Statuses" FromRole="Statuses" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PersonalData" Relationship="Test4Model.FK_PersonalData_Users" FromRole="Users" ToRole="PersonalData" />
+    <NavigationProperty Name="Roles" Relationship="Test4Model.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="Statuses" Relationship="Test4Model.FK_Users_Statuses" FromRole="Users" ToRole="Statuses" />
+  </EntityType>
+  <Association Name="FK_Orders_PersonalData">
+    <End Type="Test4Model.PersonalData" Role="PersonalData" Multiplicity="0..1" />
+    <End Type="Test4Model.Orders" Role="Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonalData">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="PersonalDataId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Products">
+    <End Type="Test4Model.Products" Role="Products" Multiplicity="0..1" />
+    <End Type="Test4Model.Orders" Role="Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Statuses">
+    <End Type="Test4Model.Statuses" Role="Statuses" Multiplicity="0..1" />
+    <End Type="Test4Model.Orders" Role="Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonalData_Users">
+    <End Type="Test4Model.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="Test4Model.PersonalData" Role="PersonalData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PersonalData">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Type="Test4Model.Roles" Role="Roles" Multiplicity="1" />
+    <End Type="Test4Model.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Statuses">
+    <End Type="Test4Model.Statuses" Role="Statuses" Multiplicity="1" />
+    <End Type="Test4Model.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,44 @@
+﻿<Page x:Class="Test4.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Test4.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Добавить" Name="BtnMenuAdd" Click="BtnMenuAdd_Click"/>
+            <Button Name="BtnRefresh" Click="BtnRefresh_Click" Content="Обновить"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1" RowHeight="50" Name="DataGridProduct" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата заказа" Width="*" Binding="{Binding Date}"/>
+                <DataGridTextColumn Header="Статус заказа" Width="*" Binding="{Binding Statuses.NameStatus}"/>
+                <DataGridTextColumn Header="Сотрудник" Width="*" Binding="{Binding PersonalData.Name}"/>
+                <DataGridTemplateColumn Header="Действие" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel>
+                                    <Button Content="Редактировать" Name="BtnEdit" Height="15" Click="BtnEdit_Click"/>
+                                    <Button Content="Удалить" Name="BtnDelete" Height="15" Click="BtnDelete_Click"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

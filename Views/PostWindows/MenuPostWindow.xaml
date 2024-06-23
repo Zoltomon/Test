@@ -1,0 +1,16 @@
+﻿<Window x:Class="Test4.Views.PostWindows.MenuPostWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Test4.Views.PostWindows"
+        mc:Ignorable="d"
+        Title="Меню добавления" Height="250" Width="300">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="Продукт" Name="BtnAddProduct" Click="BtnAddProduct_Click"/>
+            <Button Content="Заказ" Name="BtnAddOrder" Click="BtnAddOrder_Click"/>
+            <Button Content="Пользователя" Name="BtnAddUser" Click="BtnAddUser_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
