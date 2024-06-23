@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3973abdb6322400aa4de7c8f58a84729" Name="Diagram1">
+        <EntityTypeShape EntityType="Test4Model.Orders" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Test4Model.PersonalData" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Test4Model.Products" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Test4Model.Roles" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Test4Model.Statuses" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Test4Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Test4Model.Users" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="Test4Model.FK_Orders_PersonalData" ManuallyRouted="false" />
+        <AssociationConnector Association="Test4Model.FK_Orders_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="Test4Model.FK_Orders_Statuses" ManuallyRouted="false" />
+        <AssociationConnector Association="Test4Model.FK_PersonalData_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Test4Model.FK_Users_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="Test4Model.FK_Users_Statuses" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
